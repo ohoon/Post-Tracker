@@ -25,7 +25,7 @@ public class TrackingResponse {
     @NoArgsConstructor
     @XmlRootElement
     @XmlAccessorType(XmlAccessType.FIELD)
-    private static class Header {
+    public static class Header {
 
         @XmlElement
         private String requestRegiNo;
@@ -45,7 +45,7 @@ public class TrackingResponse {
     @NoArgsConstructor
     @XmlRootElement
     @XmlAccessorType(XmlAccessType.FIELD)
-    private static class TrackInfo {
+    public static class TrackInfo {
 
         @XmlElement
         private String regiNo;
@@ -69,14 +69,14 @@ public class TrackingResponse {
         private String expressType;
 
         @XmlElement(name = "detaileTrackList")
-        private List<DetailedTrackList> detailedTrackList;
+        private List<DetailedTrackInfo> detailedTrackList;
 
         @Data
         @AllArgsConstructor
         @NoArgsConstructor
         @XmlRootElement
         @XmlAccessorType(XmlAccessType.FIELD)
-        private static class DetailedTrackList {
+        private static class DetailedTrackInfo {
 
             @XmlElement
             private String sortNo;
