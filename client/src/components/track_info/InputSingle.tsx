@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { InputGroup } from 'react-bootstrap';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 import { useAppDispatch } from '../../app/hooks';
 import {
     getTrackInfo,
-    clear
 } from '../../features/track_info/trackInfoSlice';
 
 export function InputSingle() {
@@ -12,23 +13,22 @@ export function InputSingle() {
     const [rgist, setRgist] = useState("");
 
     return (
-        <div>
+        <div
+            className="my-3"
+        >
             <InputGroup>
-                <input
+                <Form.Control
+                    placeholder="등기 번호 13자리를 입력해주세요"
                     aria-label="등기 번호 13자리를 입력해주세요"
                     value={rgist}
                     onChange={(e) => setRgist(e.target.value)}
                 />
-                <button
+                <Button
+                    variant="outline-secondary"
                     onClick={() => dispatch(getTrackInfo(rgist))}
                 >
                     조회
-                </button>
-                <button
-                    onClick={() => dispatch(clear())}
-                >
-                    초기화
-                </button>
+                </Button>
             </InputGroup>
         </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card';
 
 import {
     TrackInfoState,
@@ -11,12 +12,91 @@ interface TrackInfoProps {
 
 export function TrackInfoSuccess({ regiNo, trackInfo }: TrackInfoProps) {
     return (
-        <div id={regiNo} className="row">
-            <>
-                보낸이: {trackInfo.senderName}, 보낸날짜: {trackInfo.senderDate},
-                상태: {trackInfo.trackState},
-                받는이: {trackInfo.receiveName}, 받은날짜: {trackInfo.receiveDate}
-            </>
+        <div
+            className="info-box row my-1"
+        >
+            <Card
+                id={regiNo}
+                bg="success"
+                text="light"
+            >
+                <Card.Body
+                    className="row"
+                >
+                    <div
+                        className="col-2"
+                    >
+                        <div
+                            className="row"
+                        >
+                            <small
+                                className="text-muted"
+                            >
+                                등기번호
+                            </small>
+                        </div>
+                        <div
+                            className="row"
+                        >
+                            <small>
+                                {regiNo}
+                            </small>
+                        </div>
+                    </div>
+                    <div
+                        className="col-3"
+                    >
+                        <div
+                            className="row"
+                        >
+                            <small
+                                className="text-muted"
+                            >
+                                보낸이
+                            </small>
+                        </div>
+                        <div
+                            className="row"
+                        >
+                            <span>
+                                {trackInfo.senderName}
+                            </span>
+                        </div>
+                    </div>
+                    <div
+                        className="col-1"
+                    >
+                        →
+                    </div>
+                    <div
+                        className="col-3"
+                    >
+                        <div
+                            className="row"
+                        >
+                            <small
+                                className="text-muted"
+                            >
+                                받는이
+                            </small>
+                        </div>
+                        <div
+                            className="row"
+                        >
+                            <span>
+                                {trackInfo.receiveName}
+                            </span>
+                        </div>
+                    </div>
+                    <div
+                        className="col"
+                    >
+                        <span>
+                            {trackInfo.trackState}
+                        </span>
+                    </div>
+                </Card.Body>
+            </Card>
         </div>
     );
 }
