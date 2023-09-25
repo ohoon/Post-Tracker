@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { InfoCircle } from "react-bootstrap-icons";
 
+import { useAppDispatch } from '../../app/hooks';
 import {
     TrackInfoState,
+    getTrackInfo
 } from '../../features/track_info/trackInfoSlice';
+
+import { DetailedTrackInfo } from "./DetailedTrackInfo";
 
 interface TrackInfoProps {
     regiNo: string;
@@ -11,6 +18,12 @@ interface TrackInfoProps {
 }
 
 export function TrackInfoSuccess({ regiNo, trackInfo }: TrackInfoProps) {
+    const dispatch = useAppDispatch();
+    const [show, setShow] = useState(false);
+
+    const showDetails = () => setShow(true);
+    const hideDetails = () => setShow(false);
+
     return (
         <div
             className="info-box row my-1"
@@ -19,6 +32,7 @@ export function TrackInfoSuccess({ regiNo, trackInfo }: TrackInfoProps) {
                 id={regiNo}
                 bg="success"
                 text="light"
+                onClick={showDetails}
             >
                 <Card.Body
                     className="row"
@@ -95,8 +109,49 @@ export function TrackInfoSuccess({ regiNo, trackInfo }: TrackInfoProps) {
                             {trackInfo.trackState}
                         </span>
                     </div>
+                    <div
+                        className="col-1"
+                    >
+                        <InfoCircle
+                            width="25%"
+                            height="25%"
+                        />
+                    </div>
                 </Card.Body>
             </Card>
+
+            <Modal
+                size="lg"
+                show={show}
+                onHide={hideDetails}
+            >
+                <Modal.Header
+                    closeButton
+                >
+                    <Modal.Title>
+                        배송 진행상황
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <DetailedTrackInfo
+                        regiNo={regiNo}
+                    />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="success"
+                        onClick={() => dispatch(getTrackInfo(regiNo))}
+                    >
+                        갱신하기
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        onClick={hideDetails}
+                    >
+                        닫기
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 }

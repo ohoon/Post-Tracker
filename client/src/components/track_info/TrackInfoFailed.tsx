@@ -1,8 +1,11 @@
 import React from 'react';
 import Card from "react-bootstrap/Card";
+import { ArrowClockwise } from "react-bootstrap-icons";
 
+import { useAppDispatch } from "../../app/hooks";
 import {
     TrackInfoState,
+    getTrackInfo,
 } from '../../features/track_info/trackInfoSlice';
 
 interface TrackInfoProps {
@@ -11,6 +14,8 @@ interface TrackInfoProps {
 }
 
 export function TrackInfoFailed({ regiNo, trackInfo }: TrackInfoProps) {
+    const dispatch = useAppDispatch();
+
     return (
         <div
             className="info-box row my-1"
@@ -19,6 +24,7 @@ export function TrackInfoFailed({ regiNo, trackInfo }: TrackInfoProps) {
                 id={regiNo}
                 bg="danger"
                 text="light"
+                onClick={() => dispatch(getTrackInfo(regiNo))}
             >
                 <Card.Body
                     className="row"
@@ -49,6 +55,14 @@ export function TrackInfoFailed({ regiNo, trackInfo }: TrackInfoProps) {
                         <span>
                             {trackInfo.message}
                         </span>
+                    </div>
+                    <div
+                        className="col-1"
+                    >
+                        <ArrowClockwise
+                            width="30%"
+                            height="30%"
+                        />
                     </div>
                 </Card.Body>
             </Card>
