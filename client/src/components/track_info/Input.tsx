@@ -4,6 +4,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 
 import { InputSingle } from "./InputSingle";
+import { InputRange } from "./InputRange";
 
 export function Input() {
     return (
@@ -25,7 +26,7 @@ export function Input() {
                         eventKey="range"
                         title="범위조회"
                     >
-                        범위조회
+                        <InputRange />
                     </Tab>
                     <Tab
                         eventKey="file"
