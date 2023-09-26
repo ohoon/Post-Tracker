@@ -5,6 +5,7 @@ import Tab from "react-bootstrap/Tab";
 
 import { InputSingle } from "./InputSingle";
 import { InputRange } from "./InputRange";
+import { InputFile } from "./InputFile";
 
 export function Input() {
     return (
@@ -32,7 +33,7 @@ export function Input() {
                         eventKey="file"
                         title="파일조회"
                     >
-                        파일조회
+                        <InputFile />
                     </Tab>
                 </Tabs>
             </Card.Body>
