@@ -24,9 +24,11 @@ export function InputRange() {
                     value={rgistFrom}
                     onChange={(e) => setRgistFrom(parseInt(e.target.value))}
                 />
-                <span>
+                <Form.Text
+                    className="mx-1"
+                >
                     ~
-                </span>
+                </Form.Text>
                 <Form.Control
                     placeholder="등기 끝번호"
                     aria-label="등기 끝번호"
