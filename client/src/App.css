@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,4 +49,8 @@
 .info-box .card:hover {
   transform: scale(1.01);
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.nav-tabs .nav-item button {
+  font-size: 1.25rem;
 }
