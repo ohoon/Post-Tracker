@@ -10,8 +10,8 @@ import {
 
 export function InputRange() {
     const dispatch = useAppDispatch();
-    const [rgistFrom, setRgistFrom] = useState("");
-    const [rgistTo, setRgistTo] = useState("");
+    const [rgistFrom, setRgistFrom] = useState<number>();
+    const [rgistTo, setRgistTo] = useState<number>();
 
     return (
         <div
@@ -22,7 +22,7 @@ export function InputRange() {
                     placeholder="등기 시작번호"
                     aria-label="등기 시작번호"
                     value={rgistFrom}
-                    onChange={(e) => setRgistFrom(e.target.value)}
+                    onChange={(e) => setRgistFrom(parseInt(e.target.value))}
                 />
                 <span>
                     ~
@@ -31,26 +31,28 @@ export function InputRange() {
                     placeholder="등기 끝번호"
                     aria-label="등기 끝번호"
                     value={rgistTo}
-                    onChange={(e) => setRgistTo(e.target.value)}
+                    onChange={(e) => setRgistTo(parseInt(e.target.value))}
                 />
                 <Button
                     variant="outline-secondary"
                     onClick={() => {
-                        const from = parseInt(rgistFrom);
-                        const to = parseInt(rgistTo);
-                        if (isNaN(from) || isNaN(to)) {
+                        if (rgistFrom === undefined || rgistTo === undefined) {
+                            return alert("범위를 입력해 주세요");
+                        }
+
+                        if (isNaN(rgistFrom) || isNaN(rgistTo)) {
                             return alert("국내 우편만 가능한 서비스입니다");
                         }
 
-                        if (from > to) {
+                        if (rgistFrom > rgistTo) {
                             return alert("범위 입력값이 올바르지 않습니다");
                         }
 
-                        if (to - from > 100) {
+                        if (rgistTo - rgistFrom >= 100) {
                             return alert("한번에 100건을 초과하여 조회할 수 없습니다")
                         }
 
-                        for (let rgist = from; rgist <= to; rgist++) {
+                        for (let rgist = rgistFrom; rgist <= rgistTo; rgist++) {
                             dispatch(getTrackInfo(rgist.toString()));
                         }
                     }}
