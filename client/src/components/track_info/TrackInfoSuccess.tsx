@@ -7,7 +7,8 @@ import { InfoCircle } from "react-bootstrap-icons";
 import { useAppDispatch } from '../../app/hooks';
 import {
     TrackInfoState,
-    getTrackInfo
+    getTrackInfo,
+    remove,
 } from '../../features/track_info/trackInfoSlice';
 
 import { DetailedTrackInfo } from "./DetailedTrackInfo";
@@ -145,10 +146,13 @@ export function TrackInfoSuccess({ regiNo, trackInfo }: TrackInfoProps) {
                         갱신하기
                     </Button>
                     <Button
-                        variant="secondary"
-                        onClick={hideDetails}
+                        variant="danger"
+                        onClick={() => {
+                            hideDetails();
+                            dispatch(remove(regiNo));
+                        }}
                     >
-                        닫기
+                        삭제
                     </Button>
                 </Modal.Footer>
             </Modal>

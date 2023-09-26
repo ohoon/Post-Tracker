@@ -47,6 +47,9 @@ export const trackInfoSlice = createSlice({
   initialState,
   reducers: {
     clear: () => initialState,
+    remove: (state, { payload }) => {
+      delete state[payload];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -66,7 +69,7 @@ export const trackInfoSlice = createSlice({
   },
 });
 
-export const { clear } = trackInfoSlice.actions;
+export const { clear, remove } = trackInfoSlice.actions;
 
 export const selectTrackInfoDict = (state: RootState) => state.trackInfoDict;
 
