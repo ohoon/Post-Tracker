@@ -54,3 +54,11 @@
 .nav-tabs .nav-item button {
   font-size: 1.25rem;
 }
+
+.output-control svg {
+  cursor: pointer;
+}
+
+.output-control svg:hover {
+  transform: scale(1.05);
+}
