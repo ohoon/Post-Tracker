@@ -1,0 +1,14 @@
+FROM node:18.18.0
+LABEL authors="Young.K"
+
+WORKDIR /usr/src/app/client
+
+COPY ./package*.json ./
+
+RUN npm install
+
+COPY ./ ./
+
+ENV CHOKIDAR USEPOLLING=true
+
+ENTRYPOINT [ "npm", "run", "start" ]

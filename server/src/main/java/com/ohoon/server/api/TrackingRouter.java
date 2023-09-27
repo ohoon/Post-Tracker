@@ -18,8 +18,10 @@ public class TrackingRouter {
     @Bean
     public RouterFunction<ServerResponse> tracking() {
         return route()
-                .path("/tracking", builder -> builder
-                        .GET("/{rgist}", trackingHandler::track)
+                .path("/api", front -> front
+                        .path("/tracking", builder -> builder
+                                .GET("/{rgist}", trackingHandler::track)
+                        )
                 )
                 .build();
     }

@@ -1,0 +1,46 @@
+version: "3.8"
+services:
+  frontend:
+    container_name: post-tracker-frontend
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - /usr/src/app/client/node_modules
+      - ./client:/usr/src/app/client
+    stdin_open: true
+    restart: on-failure
+
+  backend:
+    container_name: post-tracker-backend
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    environment:
+      BASE_URL: ${BASE_URL}
+    depends_on:
+      - redis
+    restart: on-failure
+
+  redis:
+    container_name: post-tracker-redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  nginx:
+    container_name: post-tracker-app
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+    links:
+      - backend
+      - frontend
+    depends_on:
+      - backend
+      - frontend
+      - redis
+    restart: always

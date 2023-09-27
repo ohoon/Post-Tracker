@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export const fetchTrackInfo = async (rgist: string) => {
-  const response = await axios.get(`http://localhost:8080/tracking/${rgist}`);
+  const response = await axios.get(`/api/tracking/${rgist}`);
   return response.data;
 }
