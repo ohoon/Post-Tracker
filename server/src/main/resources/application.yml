@@ -1,0 +1,5 @@
+spring:
+  data:
+    redis:
+      host: post-tracker-redis
+      port: 6379
