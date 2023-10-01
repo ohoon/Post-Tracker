@@ -1,4 +1,10 @@
 spring:
+  profiles:
+    include: actuator
+
+  application:
+    name: Post Tracker
+
   data:
     redis:
       host: post-tracker-redis

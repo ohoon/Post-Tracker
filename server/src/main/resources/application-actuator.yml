@@ -1,0 +1,21 @@
+management:
+  info:
+    java:
+      enabled: true
+    os:
+      enabled: true
+    env:
+      enabled: true
+
+  server:
+    port: 7777
+
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  cache:
+    redis:
+      enable-statistics: true

@@ -3,6 +3,7 @@ package com.ohoon.server.app.service;
 import com.ohoon.server.app.dto.Result;
 import com.ohoon.server.app.dto.TrackingResponse;
 import com.ohoon.server.app.dto.TrackingResponse.TrackInfo;
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.data.redis.core.ReactiveValueOperations;
@@ -33,7 +34,7 @@ public class TrackingService {
         ReactiveValueOperations<String, TrackingResponse> valueOps = redis.opsForValue();
         return valueOps.get(rgist)
                 .switchIfEmpty(callTrackingApi(rgist)
-                        .flatMap(response -> valueOps.set(rgist, new TrackingResponse(), Duration.ofMinutes(1))
+                        .flatMap(response -> valueOps.set(rgist, response, Duration.ofMinutes(1))
                                 .thenReturn(response)));
     }
 
