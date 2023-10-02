@@ -30,7 +30,7 @@ services:
     restart: unless-stopped
 
   nginx:
-    container_name: post-tracker-app
+    container_name: post-tracker-nginx
     build:
       dockerfile: Dockerfile
       context: ./nginx
