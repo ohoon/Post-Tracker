@@ -9,6 +9,6 @@ RUN npm install
 
 COPY ./ ./
 
-ENV CHOKIDAR USEPOLLING=true
+ENV CHOKIDAR_USEPOLLING=true
 
 ENTRYPOINT [ "npm", "run", "start" ]
