@@ -11,6 +11,7 @@ import {
 import { Input } from "./components/track_info/Input";
 import { Output } from './components/track_info/Output';
 import { OutputControl } from "./components/track_info/OutputControl";
+import { Footer } from "./components/footer/Footer";
 
 function App() {
   const trackInfoDict = useAppSelector(selectTrackInfoDict);
@@ -26,6 +27,7 @@ function App() {
           <Output />
         </>}
       </header>
+      <Footer />
     </div>
   );
 }
