@@ -6,3 +6,6 @@
 
 ### Environment ###
 .env
+
+### Draw.io Backup ###
+*.bkp
