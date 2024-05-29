@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {ArrowClockwise, Download, Trash, ArrowRepeat} from "react-bootstrap-icons";
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -10,7 +10,7 @@ export function OutputControl() {
 
     const [ptr, setPtr] = useState<NodeJS.Timeout>();
     const [auto, setAuto] = useState<Boolean>(false);
-    const POLL_TIME = 1000;
+    const POLL_TIME = 60000;
 
     const downloadCSV = () => {
         let data = "등기번호,보낸이,보낸날짜,받는이,받은날짜,배송상황\r\n";
@@ -28,8 +28,20 @@ export function OutputControl() {
         link.click();
     };
 
-    const refresh = () => Object.keys(trackInfoDict)
-        .forEach(regiNo => dispatch(getTrackInfo(regiNo)));
+    const refresh = useCallback(
+        () => Object.keys(trackInfoDict)
+            .forEach(regiNo => dispatch(getTrackInfo(regiNo))),
+        // eslint-disable-next-line
+        [Object.keys(trackInfoDict).length]
+    );
+
+    const toggle = () => setAuto(!auto);
+
+    const reset = () => {
+        setAuto(false);
+        clearInterval(ptr);
+        return dispatch(clear());
+    }
 
     useEffect(() => {
         if (!auto) {
@@ -39,7 +51,7 @@ export function OutputControl() {
         clearInterval(ptr);
         setPtr(setInterval(refresh, POLL_TIME));
     // eslint-disable-next-line
-    }, [auto]);
+    }, [auto, refresh]);
 
     return (
         <div
@@ -59,11 +71,11 @@ export function OutputControl() {
                 />
                 <ArrowRepeat
                     className={`mx-2 ${auto ? 'rotated' : ''}`}
-                    onClick={() => setAuto(!auto)}
+                    onClick={toggle}
                 />
                 <Trash
                     className="mx-2"
-                    onClick={() => dispatch(clear())}
+                    onClick={reset}
                 />
             </div>
         </div>
