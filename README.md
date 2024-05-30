@@ -1,6 +1,6 @@
 # Post-Tracker
 > 우체국 등기번호를 간편하고 빠르게 조회할 수 있는 서비스
-- URL: [http://ec2-43-202-130-1.ap-northeast-2.compute.amazonaws.com/](http://ec2-43-202-130-1.ap-northeast-2.compute.amazonaws.com/)
+- URL: ~~[http://ec2-43-202-130-1.ap-northeast-2.compute.amazonaws.com/](http://ec2-43-202-130-1.ap-northeast-2.compute.amazonaws.com/)~~ [배포 중단]
 
 ![홈 화면](https://github.com/ohoon/post-tracker/assets/46547443/f0e00ef6-2959-4b88-8f78-6bcacae9961b)
 
@@ -24,7 +24,7 @@
 ## 들어가며
 ### 1. 프로젝트 소개
 
-대용량 트래픽 처리가 요구되는 서비스이기 때문에 non-blocking하고 비동기적인 기술의 필요성을 느꼈습니다. <br/>
+대용량 트래픽 처리가 요구되고 api 호출이 잦은 서비스이기 때문에 non-blocking하고 비동기적인 기술의 필요성을 느꼈습니다. <br/>
 Spring에서 제공하는 non-blocking 비동기 기술인 Webflux와 WebClient, Reactvie Redux 등을 학습하고 사용한 프로젝트입니다.
 
 ### 2. 프로젝트 기능
@@ -145,7 +145,7 @@ Spring에서 제공하는 non-blocking 비동기 기술인 Webflux와 WebClient,
 
 - 조회 결과별로 필터링
 - 국제 우편 분류
-- 구글 애드센스 달고 서비스 운영해보기
+- ~~자동 갱신 기능~~
 
 </details>   
 
